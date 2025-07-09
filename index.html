@@ -119,6 +119,41 @@
 		
         <p class="footer">команда "Человеки". Все права защищены. 2025г </p>
     </div>
-
+<script>
+        // Автоматическое определение последней версии
+        const repo = 'Fest_Site_1';
+        const user = 'LubninEgor';
+        
+        // URL для получения последнего релиза
+        const latestReleaseUrl = `https://api.github.com/repos/${user}/${repo}/releases/latest`;
+        
+        // Найти кнопку скачивания
+        const downloadBtn = document.getElementById('downloadBtn');
+        
+        // Получить информацию о последнем релизе
+        fetch(latestReleaseUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Найти APK-файл в релизе
+                const asset = data.assets.find(a => a.name.endsWith('.apk'));
+                
+                if (asset) {
+                    // Обновить ссылку на скачивание
+                    downloadBtn.href = asset.browser_download_url;
+                    
+                    // Обновить версию на странице
+                    const versionElement = document.querySelector('.version');
+                    versionElement.textContent = `Версия ${data.tag_name} • ${new Date(data.published_at).toLocaleDateString()}`;
+                } else {
+                    downloadBtn.textContent = 'APK не найден';
+                    downloadBtn.style.backgroundColor = '#ff6b6b';
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+                downloadBtn.textContent = 'Ошибка загрузки';
+                downloadBtn.style.backgroundColor = '#ff6b6b';
+            });
+    </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 	<!-- Фавиконка -->
     <link rel="icon" href="./ico.png" type="image/png">
 	
-    <title>Скачать приложение</title>
+    <title>Инструкция</title>
     <style>
 	* {
             margin: 0;
@@ -101,59 +101,34 @@
 </head>
 <body>
     <div class="container">
-         <!-- Простая круглая иконка без обводки -->
         
-        <h1>Живая история</h1>
+        <h1>Фестиваль трубочек</h1>
         
-        <div class="instructions">
-            <h3>Инструкция после установки:</h3>
+		<div class="instructions">
+            <h3>Инструкция для сайта:</h3>
             <ol>
+				<li><a href ="https://app.mattercraft-live.io/b55165e7/index.html?pid=6dbe41271e8e4fe59efb91186c60cb3c" style="color: #333">Перейдите на сайт по ссылке</a></li>
+                <li>Дождитесь загрузки сайта</li>
+                <li>Разрешите доступ к камере</li>
+                <li>Наведите камеру на стикер с секретным маскотом</li>
+                <li>Сделйте фото с виртуальной трубочкой</li>
+            </ol>
+        </div>
+		
+		
+        <div class="instructions">
+            <h3>Инструкция для приложения:</h3>
+            <ol>
+				<li><a href ="https://lubninegor.github.io/Fest_Site_1/" style="color: #333">Скачайте приложение по ссылке</a></li>
                 <li>Запустите приложение</li>
-                <li>Изучите историческую справку о Васильево-Шайтанском заводе</li>
-                <li>На карте выберите «Фестиваль трубочек»</li>
-                <li>Доберитесь до места на карте</li>
-                <li>Сделйте фото с виртуальной трубочкой в режиме «Без ограничений» или «Без привязки к GPS»</li>
-				<li>Покажите фото нам</li>
+                <li>Скачайте ARCore из приложения</li>
+                <li>Разрешите доступ к камере</li>
+                <li>Наведите камеру в приложении на плакат с белым фоном </li>
+                <li>Сделйте фото с виртуальной трубочкой</li>
             </ol>
         </div>
 		
         <p class="footer">команда "Человеки". Все права защищены. 2025г </p>
     </div>
-<script>
-        // Автоматическое определение последней версии
-        const repo = 'Fest_Site_1';
-        const user = 'LubninEgor';
-        
-        // URL для получения последнего релиза
-        const latestReleaseUrl = `https://api.github.com/repos/${user}/${repo}/releases/latest`;
-        
-        // Найти кнопку скачивания
-        const downloadBtn = document.getElementById('downloadBtn');
-        
-        // Получить информацию о последнем релизе
-        fetch(latestReleaseUrl)
-            .then(response => response.json())
-            .then(data => {
-                // Найти APK-файл в релизе
-                const asset = data.assets.find(a => a.name.endsWith('.apk'));
-                
-                if (asset) {
-                    // Обновить ссылку на скачивание
-                    downloadBtn.href = asset.browser_download_url;
-                    
-                    // Обновить версию на странице
-                    const versionElement = document.querySelector('.version');
-                    versionElement.textContent = `Версия ${data.tag_name} • ${new Date(data.published_at).toLocaleDateString()}`;
-                } else {
-                    downloadBtn.textContent = 'APK не найден';
-                    downloadBtn.style.backgroundColor = '#ff6b6b';
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-                downloadBtn.textContent = 'Ошибка загрузки';
-                downloadBtn.style.backgroundColor = '#ff6b6b';
-            });
-    </script>
 </body>
 </html>
